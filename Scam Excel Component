@@ -1,0 +1,7 @@
+import openpyxl
+
+scam_sheet = openpyxl.load_workbook('D:\Desktop\Python Work\Scam Sheet Python.xlsx')
+sheet = scam_sheet['Sheet1']
+for i in range(2,1002):
+	email = sheet.cell(row=i, column = 3).value
+	print(email)

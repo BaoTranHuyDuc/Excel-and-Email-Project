@@ -1,0 +1,7 @@
+import smtplib
+
+MailObj = smtplib.SMTP('smtp.gmail.com', 587)
+MailObj.ehlo()
+MailObj.starttls()
+MailObj.login('tranhuyduc.bao@gmail.com', 'matkhau456')
+MailObj.sendmail('tranhuyduc.bao@gmail.com', 'minhkn.sthl@thschool.edu.vn','Subject: Test Python \n Nheo, \nchat tren hangout neu nhan dc tin ni')  

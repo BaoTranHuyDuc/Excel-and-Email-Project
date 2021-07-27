@@ -1,0 +1,22 @@
+import openpyxl
+import smtplib
+scam_sheet = openpyxl.load_workbook('D:\Desktop\Python Work\Scam Sheet Python.xlsx')
+sheet = scam_sheet['Sheet1']
+MailObj = smtplib.SMTP('smtp.gmail.com', 587)
+MailObj.ehlo()
+MailObj.starttls()
+MailObj.login('my_actual_email', 'my_actual_password') #use your actual email for the code
+message = '''Dear Mr/Mrs {},
+
+We are thrilled to announced that your phone number, {}, is the lucky number that won our giveaway program.
+
+Please click on this, enter your andress and pay a small shipping fee so we can send you your prize: totallynotascam.com.
+
+Regards,
+
+Not-A-Scam Corporations'''
+for i in range(2,1002):
+	email = sheet.cell(row=i, column = 3).value
+	name = sheet.cell(row=i, column = 1).value
+	phone = sheet.cell(row=i, column = 2).value
+	MailObj.sendmail('name@gmail.com', email, 'Subject: Congratulations on winning\n' + message.format(name, phone))
